@@ -73,10 +73,30 @@
 							}
 						},
 						{
-							"name": "Set variable1",
+							"name": "SetContainer",
 							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": []
+							"dependsOn": [
+								{
+									"activity": "SetBlobPath",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "SetBlobName",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "container",
+								"value": {
+									"value": "@substring(item().Path, 0, indexof(item().Path, item().BlobName))",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
