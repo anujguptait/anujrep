@@ -1,0 +1,7 @@
+{
+	"name": "Process Blob",
+	"properties": {
+		"description": "This pipline process alll the blob from storage account",
+		"annotations": []
+	}
+}
