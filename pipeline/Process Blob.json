@@ -71,6 +71,12 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": []
 						}
 					]
 				}
@@ -81,6 +87,9 @@
 				"type": "String"
 			},
 			"blobName": {
+				"type": "String"
+			},
+			"container": {
 				"type": "String"
 			}
 		},
