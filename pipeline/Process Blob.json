@@ -26,8 +26,64 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "Loopthroughblob",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LookupProcessableBlob",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupProcessableBlob').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "SetBlobPath",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "blobPath",
+								"value": {
+									"value": "@{item().Path}",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "SetBlobName",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "blobName",
+								"value": {
+									"value": "@{item().BlobName}",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
+		"variables": {
+			"blobPath": {
+				"type": "String"
+			},
+			"blobName": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
